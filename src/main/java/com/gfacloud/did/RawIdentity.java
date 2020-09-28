@@ -7,7 +7,7 @@ public class RawIdentity extends Identity {
 
     RawIdentity() {}
 
-    RawIdentity(String id, Key key) {
+    public RawIdentity(String id, Key key) {
         super(version, IdentityType.Raw, id);
         this.key = key;
     }

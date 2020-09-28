@@ -8,7 +8,7 @@ public class Key {
     private String privateKeyHex;
     private String publicKeyHex;
 
-    public Key(){}
+    Key(){}
 
     public Key(String id, KeyType type, String privateKeyHex, String publicKeyHex) {
         this.id = id;
