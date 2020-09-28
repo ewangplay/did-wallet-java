@@ -19,7 +19,7 @@ public class RawIdentityTest {
 
         assertEquals(1, rid.getVersion());
         assertEquals(IdentityType.Raw, rid.getType());
-        assertEquals(did, rid.getDid());
+        assertEquals(did, rid.getId());
         assertEquals(key, rid.getKey());
     }
     

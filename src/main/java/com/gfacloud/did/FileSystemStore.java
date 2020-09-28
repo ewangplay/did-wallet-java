@@ -25,13 +25,16 @@ public class FileSystemStore implements Store {
     }
 
     @Override
-    public void put(String label, String content) {
+    public boolean put(String label, String content) {
+        boolean ret = false;
         OutputStream out = null;
         try {
             out = new FileOutputStream(getFilename(label));
             out.write(content.getBytes());
+            ret = true;
         } catch (IOException e) {
             e.printStackTrace();
+            ret = false;
         } finally {
             try {
                 out.close();
@@ -39,6 +42,7 @@ public class FileSystemStore implements Store {
                 e.printStackTrace();
             }
         }
+        return ret;
     }
 
     @Override
@@ -81,9 +85,9 @@ public class FileSystemStore implements Store {
     }
 
     @Override
-    public void remove(String label) {
+    public boolean remove(String label) {
         File f = new File(getFilename(label));
-        f.delete();
+        return f.delete();
     } 
 
     private static String readToString(String fileName) {  

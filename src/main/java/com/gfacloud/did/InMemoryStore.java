@@ -14,8 +14,9 @@ public class InMemoryStore implements Store {
     }
 
     @Override
-    public void put(String label, String content) {
+    public boolean put(String label, String content) {
         storage.put(label, content);
+        return true;
     }
 
     @Override
@@ -40,7 +41,8 @@ public class InMemoryStore implements Store {
     }
 
     @Override
-    public void remove(String label) {
+    public boolean remove(String label) {
         storage.remove(label);
+        return true;
     }
 }

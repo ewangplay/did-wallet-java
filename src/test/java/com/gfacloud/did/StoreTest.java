@@ -12,7 +12,8 @@ public class StoreTest {
         String label = "User1";
         String content = "User1 information";
 
-        store.put(label, content);
+        boolean ret = store.put(label, content);
+        assertTrue(ret);
         assertTrue(store.exists(label));
 
         String result = store.get(label);
@@ -23,7 +24,8 @@ public class StoreTest {
         assertNotNull(list);
         assertEquals(list.size(), 1);
         
-        store.remove(label);
+        ret = store.remove(label);
+        assertTrue(ret);
         assertFalse(store.exists(label));
     } 
 }

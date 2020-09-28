@@ -31,21 +31,25 @@ public class WalletTest {
         Key key = new Key(keyID, KeyType.Ed25519, privateKeyHex, publicKeyHex);
 
         String did = "did:example:3dda540891d14a1baec2c7485c273c00";
-        RawIdentity rawId = new RawIdentity(did, key);
+        RawIdentity rawIdentity = new RawIdentity(did, key);
 
         String label = "User1";
-        wallet.put(label, rawId);
+        wallet.put(label, rawIdentity);
         assertTrue(wallet.exists(label));
 
-        Identity id = wallet.get(label);
-        assertNotNull(id);
-        assertTrue(id instanceof RawIdentity);
-        /*
-        RawIdentity rid = (RawIdentity)id;
+        Identity identity = wallet.get(label);
+        assertNotNull(identity);
+        assertTrue(identity instanceof RawIdentity);
+        RawIdentity rid = (RawIdentity)identity;
+        assertEquals(1, rid.getVersion());
+        assertEquals(did, rid.getId());
+        assertEquals(IdentityType.Raw, rid.getType());
         Key k = rid.getKey();
         assertNotNull(k);
-        assertEquals(key, k);
-        */
+        assertEquals(key.getId(), k.getId());
+        assertEquals(key.getType(), k.getType());
+        assertEquals(key.getPrivateKeyHex(), k.getPrivateKeyHex());
+        assertEquals(key.getPublicKeyHex(), k.getPublicKeyHex());
         
         ArrayList<String> list = wallet.list();
         assertNotNull(list);

@@ -29,14 +29,14 @@ public class Wallet {
         String type = obj.getString("type");
 
         Identity id = null;
-        switch (type) {
-            case "Raw":
+        switch (IdentityType.valueOf(type)) {
+            case Raw:
                 RawIdentity r = obj.toJavaObject(RawIdentity.class);
                 id = r;
                 break;
         
             default:
-                System.out.println("unsupported identity type: " + label);
+                System.out.println("unsupported identity type: " + type);
                 break;
         }
 
